@@ -1336,3 +1336,13 @@ em { font-style: normal; color: var(--orange); }
 .lightbox-trigger img {
   pointer-events: none;
 }
+
+@keyframes logoColorLoop {
+  0%   { filter: brightness(0) invert(1); }
+  25%  { filter: brightness(0) invert(0.9) sepia(1) saturate(4) hue-rotate(340deg) brightness(1.1); }
+  60%  { filter: brightness(0) invert(1) sepia(0.25) brightness(1.05); }
+  100% { filter: brightness(0) invert(1); }
+}
+.nav-logo img {
+  animation: logoColorLoop 4s ease-in-out infinite;
+}
