@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lahaut-v2",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const http=require('http'),fs=require('fs'),path=require('path');http.createServer((req,res)=>{let f=path.join('C:/Users/matlocal/Desktop/lahaut-v2',req.url==='/'?'/index.html':req.url);fs.readFile(f,(e,d)=>{if(e){res.writeHead(404);res.end();}else{const ext=path.extname(f);const m={'html':'text/html','css':'text/css','js':'application/javascript','jpg':'image/jpeg','png':'image/png','webp':'image/webp','svg':'image/svg+xml'};res.writeHead(200,{'Content-Type':m[ext.slice(1)]||'text/plain'});res.end(d);}});}).listen(4242);"],
+      "port": 4242
+    }
+  ]
+}

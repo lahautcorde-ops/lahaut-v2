@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devis & Contact — LA HAUT · Couvreur-cordiste IDF</title>
+<meta name="description" content="Demandez un devis gratuit à Benoit Brient, couvreur-cordiste en Île-de-France. Réponse sous 24h. Entretien, couverture zinc, contrat annuel.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="container">
+    <a class="nav-logo" href="index.html"><img src="images/logo_lahaut.png" alt="LA HAUT" style="height:44px; width:auto; "></a>
+    <div class="nav-links">
+      <a class="nav-link" href="entretien.html">Travaux sur cordes</a>
+      <a class="nav-link" href="zinguerie.html">Couverture &amp; Zinc</a>
+      <a class="nav-link" href="maconnerie.html">Maçonnerie</a>
+      <a class="nav-link" href="contrats.html">Syndics &amp; Pros</a>
+      <a class="nav-link" href="realisations.html">Réalisations</a>
+      <a class="nav-link nav-link--cta" href="contact.html">Demander un devis</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a class="nav-link" href="entretien.html">Travaux sur cordes</a>
+  <a class="nav-link" href="zinguerie.html">Couverture &amp; Zinc</a>
+  <a class="nav-link" href="maconnerie.html">Maçonnerie</a>
+      <a class="nav-link" href="contrats.html">Syndics &amp; Pros</a>
+  <a class="nav-link" href="realisations.html">Réalisations</a>
+  <a class="nav-link nav-link--cta" href="contact.html">Demander un devis</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero page-hero--blue">
+  <div class="page-hero__blob"></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="label label--white">Devis gratuit · Réponse 24h</div>
+      <h1>Décrivez votre<br>projet ou problème.</h1>
+      <p>Je lis chaque demande et je rappelle sous 24h avec une estimation claire. Déplacement inclus en Île-de-France.</p>
+      <a class="btn btn--orange btn--lg" href="tel:+33659227569">☎ Appeler maintenant — 06 59 22 75 69</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE MULTI-ÉTAPES -->
+<section class="section section--white">
+  <div class="container" style="max-width:680px;">
+
+    <div class="form-wrap">
+
+      <!-- ÉTAPES INDICATEURS -->
+      <div class="form-steps" id="form-steps">
+        <div class="form-step-indicator active" data-step="1">1 · Type de besoin</div>
+        <div class="form-step-indicator" data-step="2">2 · Détails</div>
+        <div class="form-step-indicator" data-step="3">3 · Contact</div>
+      </div>
+
+      <!-- ÉTAPE 1 : TYPE DE BESOIN -->
+      <div class="form-panel active" id="step-1">
+        <h3 style="font-size:20px; color:var(--blue-deep); margin-bottom:8px;">Quel est votre besoin ?</h3>
+        <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">Je vous poserai des questions adaptées selon votre choix.</p>
+
+        <div class="type-selector" id="type-selector">
+          <div class="type-option" data-type="entretien">
+            <div class="type-option__icon">🪢</div>
+            <div class="type-option__label">Entretien<br>sur cordes</div>
+          </div>
+          <div class="type-option" data-type="zinc">
+            <div class="type-option__icon">🏗️</div>
+            <div class="type-option__label">Travaux<br>couverture</div>
+          </div>
+          <div class="type-option" data-type="contrat">
+            <div class="type-option__icon">📋</div>
+            <div class="type-option__label">Contrat<br>annuel</div>
+          </div>
+        </div>
+
+        <div class="form-nav" style="justify-content:flex-end;">
+          <button class="btn btn--orange" id="step1-next" disabled>Continuer →</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 2 : DÉTAILS (varie selon type) -->
+      <div class="form-panel" id="step-2">
+
+        <!-- Détails entretien -->
+        <div id="details-entretien" style="display:none;">
+          <h3 style="font-size:20px; color:var(--blue-deep); margin-bottom:20px;">Entretien sur cordes — détails</h3>
+          <div class="form-group">
+            <label>Type de prestation</label>
+            <select name="prestation_entretien">
+              <option value="">Choisir...</option>
+              <option value="gouttieres">Nettoyage gouttières</option>
+              <option value="demoussage">Démoussage + hydrofuge</option>
+              <option value="inspection">Inspection + rapport PDF</option>
+              <option value="securite">Mise en sécurité urgente</option>
+              <option value="anti-pigeon">Anti-pigeon</option>
+              <option value="reparation">Petite réparation</option>
+              <option value="autre">Autre / Je ne sais pas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Surface approximative de toiture</label>
+            <input type="text" name="surface_entretien" placeholder="ex: 80 m², ou je ne sais pas">
+          </div>
+          <div class="form-group">
+            <label>Urgence</label>
+            <select name="urgence_entretien">
+              <option value="normal">Normal (sous 5-10 jours)</option>
+              <option value="rapide">Rapide (sous 48h)</option>
+              <option value="urgence">Urgence (aujourd'hui / demain)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Détails zinc -->
+        <div id="details-zinc" style="display:none;">
+          <h3 style="font-size:20px; color:var(--blue-deep); margin-bottom:20px;">Travaux couverture — détails</h3>
+          <div class="form-group">
+            <label>Type de travaux</label>
+            <select name="prestation_zinc">
+              <option value="">Choisir...</option>
+              <option value="refection">Réfection toiture zinc</option>
+              <option value="velux">Velux / fenêtre de toit</option>
+              <option value="cheminee">Cheminée / solins</option>
+              <option value="ardoises">Ardoises / lucarnes</option>
+              <option value="gouttieres_zinc">Remplacement gouttières zinc</option>
+              <option value="ravalement">Ravalement / enduit</option>
+              <option value="b2b">Sous-traitance (je suis une entreprise)</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group--row form-group">
+            <div>
+              <label>Surface (approx.)</label>
+              <input type="text" name="surface_zinc" placeholder="ex: 150 m²">
+            </div>
+            <div>
+              <label>Accès au toit</label>
+              <select name="acces_zinc">
+                <option value="inconnu">Je ne sais pas</option>
+                <option value="trappe">Trappe intérieure</option>
+                <option value="exterieur">Accès extérieur</option>
+                <option value="aucun">Aucun accès connu</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description du problème ou du projet</label>
+            <textarea name="description_zinc" placeholder="Infiltration depuis 2 ans au niveau du Velux, côté nord... Ou : réfection complète d'une toiture haussmannienne de 200 m²..."></textarea>
+          </div>
+        </div>
+
+        <!-- Détails contrat -->
+        <div id="details-contrat" style="display:none;">
+          <h3 style="font-size:20px; color:var(--blue-deep); margin-bottom:20px;">Contrat annuel — détails</h3>
+          <div class="form-group">
+            <label>Type de bien</label>
+            <select name="bien_contrat">
+              <option value="">Choisir...</option>
+              <option value="particulier">Maison / Appartement individuel</option>
+              <option value="copropriete">Copropriété</option>
+              <option value="immeuble">Immeuble entier</option>
+              <option value="multi">Plusieurs bâtiments</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Formule souhaitée</label>
+            <select name="formule_contrat">
+              <option value="">Choisir...</option>
+              <option value="essentiel">Essentiel — 1 visite/an</option>
+              <option value="serenite">Sérénité — 2 visites/an ⭐</option>
+              <option value="integral">Intégral — Sur mesure</option>
+              <option value="conseil">Je veux un conseil</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Surface toiture (approx.)</label>
+            <input type="text" name="surface_contrat" placeholder="ex: 200 m², ou je ne sais pas">
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn--outline-blue" id="step2-prev">← Retour</button>
+          <button class="btn btn--orange" id="step2-next">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 3 : CONTACT -->
+      <div class="form-panel" id="step-3">
+        <h3 style="font-size:20px; color:var(--blue-deep); margin-bottom:20px;">Vos coordonnées</h3>
+
+        <div class="form-group--row form-group">
+          <div>
+            <label>Nom / Société *</label>
+            <input type="text" name="nom" placeholder="Dupont / Syndic Immo" required>
+          </div>
+          <div>
+            <label>Téléphone *</label>
+            <input type="tel" name="tel" placeholder="06 __ __ __ __" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="votre@email.com">
+        </div>
+
+        <div class="form-group">
+          <label>Adresse ou code postal *</label>
+          <input type="text" name="adresse" placeholder="Paris 15e, ou 92100 Boulogne..." required>
+        </div>
+
+        <div class="form-group">
+          <label>Informations complémentaires</label>
+          <textarea name="message" placeholder="Tout ce qui peut m'aider : accès à la toiture, contraintes horaires, contexte..."></textarea>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn--outline-blue" id="step3-prev">← Retour</button>
+          <button class="btn btn--orange btn--lg" id="step3-submit" style="flex:1; justify-content:center;">
+            Envoyer ma demande
+          </button>
+        </div>
+
+        <p style="text-align:center; font-size:12px; color:var(--text-muted); margin-top:16px;">
+          Ou appelez directement : <a href="tel:+33659227569" style="color:var(--blue-mid); font-weight:bold;">06 59 22 75 69</a>
+        </p>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div class="form-panel" id="step-confirm">
+        <div style="text-align:center; padding:32px 0;">
+          <div style="font-size:48px; margin-bottom:16px;">✓</div>
+          <h3 style="font-size:24px; color:var(--blue-deep); margin-bottom:12px;">Demande envoyée !</h3>
+          <p style="color:var(--text-muted); max-width:400px; margin:0 auto 24px;">Je lis chaque message personnellement et je vous rappelle sous 24h avec une estimation.</p>
+          <a class="btn btn--orange" href="index.html">Retour à l'accueil</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT DIRECT + ZONE -->
+<section class="section section--beige-dark">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+
+      <div>
+        <div class="label">Contact direct</div>
+        <h2 style="font-size:30px; color:var(--blue-deep); margin:12px 0 20px;">Besoin d'une réponse rapide ?</h2>
+        <p style="color:var(--text-muted); margin-bottom:28px;">Pour les urgences ou si vous préférez parler directement, appelez Benoit. Disponible du lundi au samedi.</p>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <a href="tel:+33659227569" class="btn btn--blue btn--lg" style="justify-content:center;">
+            ☎ 06 59 22 75 69
+          </a>
+          <a href="mailto:lahaut.corde@gmail.com" class="btn btn--outline-blue" style="justify-content:center;">
+            ✉ lahaut.corde@gmail.com
+          </a>
+        </div>
+
+        <div style="margin-top:28px; padding:20px; background:var(--white); border-radius:var(--radius-md); border:1px solid var(--border);">
+          <div class="label" style="margin-bottom:8px;">Informations légales</div>
+          <p style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted); line-height:2;">
+            Benoit Brient<br>
+            SIRET 813 062 031 00022<br>
+            Auto-entrepreneur<br>
+            RC Pro assurée · CQP Cordiste<br>
+            TVA non applicable — Art. 293 B du CGI
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Zone d'intervention</div>
+        <h2 style="font-size:30px; color:var(--blue-deep); margin:12px 0 20px;">Paris &amp; Île-de-France</h2>
+        <p style="color:var(--text-muted); margin-bottom:20px;">Le déplacement est inclus dans les tarifs pour toute l'Île-de-France.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">75</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Paris</div>
+            <div style="font-size:12px; color:var(--text-muted);">Tous arrondissements</div>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">92</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Hauts-de-Seine</div>
+            <div style="font-size:12px; color:var(--text-muted);">Boulogne, Neuilly...</div>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">93</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Seine-Saint-Denis</div>
+            <div style="font-size:12px; color:var(--text-muted);">Montreuil, Saint-Denis...</div>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">94</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Val-de-Marne</div>
+            <div style="font-size:12px; color:var(--text-muted);">Vincennes, Créteil...</div>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">77 · 78</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Seine-et-Marne · Yvelines</div>
+            <div style="font-size:12px; color:var(--text-muted);">Versailles, Melun...</div>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px;">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--blue-mid); margin-bottom:4px;">91 · 95</div>
+            <div style="font-size:14px; font-weight:bold; color:var(--blue-deep);">Essonne · Val-d'Oise</div>
+            <div style="font-size:12px; color:var(--text-muted);">Évry, Cergy...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo_lahaut.png" alt="LA HAUT" style="height:38px; width:auto;  margin-bottom:12px; display:block;">
+        <p>Couvreur-cordiste indépendant en Île-de-France. Entretien toiture, couverture zinc, travaux en hauteur sans échafaudage.</p>
+        <p style="margin-top:12px; font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:rgba(255,255,255,0.35);">lahaut.corde@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Prestations</h4>
+        <ul>
+          <li><a href="entretien.html">Travaux sur cordes</a></li>
+          <li><a href="zinguerie.html">Couverture &amp; Zinc</a></li>
+          <li><a href="contrats.html">Syndics &amp; Pros</a></li>
+          <li><a href="zinguerie.html#b2b">Sous-traitance B2B</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Réalisations</h4>
+        <ul>
+          <li><a href="realisations.html">Tous les chantiers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+33659227569">06 59 22 75 69</a></li>
+          <li><a href="contact.html">Demander un devis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LA HAUT — Benoit Brient</span>
+      <span class="footer-siret">SIRET 813 062 031 00022 · RC Pro assurée</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

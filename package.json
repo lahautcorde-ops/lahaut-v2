@@ -1,0 +1,10 @@
+{
+  "name": "lahaut-v2",
+  "version": "2.0.0",
+  "description": "LA HAUT — Site vitrine couvreur-cordiste IDF",
+  "scripts": {
+    "start": "npx serve . -l 3000 --no-clipboard",
+    "dev": "npx live-server --port=3000 --open=index.html"
+  },
+  "private": true
+}

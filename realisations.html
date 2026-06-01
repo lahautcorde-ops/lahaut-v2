@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — LA HAUT · Chantiers IDF</title>
+<meta name="description" content="Photos de chantiers réalisés : zinguerie, démoussage, nettoyage, ravalement, anti-pigeon, charpente, mise en sécurité. Couvreur-cordiste en Île-de-France.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.galerie-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.galerie-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--line-2);
+  background: white;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: all .2s;
+}
+.galerie-tab:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+.galerie-tab.active { background: var(--blue-deep); color: white; border-color: var(--blue-deep); }
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 960px) { .galerie-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .galerie-grid { grid-template-columns: 1fr; } }
+
+.galerie-item {
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.galerie-item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,63,110,0.15); }
+.galerie-item.hidden { display: none; }
+
+.galerie-item__img-wrap { overflow: hidden; position: relative; }
+
+.galerie-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.galerie-item:hover img { transform: scale(1.08); }
+
+.galerie-item__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(27,63,110,0.5) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.galerie-item:hover .galerie-item__overlay { opacity: 1; }
+
+.galerie-item__body { padding: 12px 14px 14px; }
+.galerie-item__cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  margin-bottom: 3px;
+}
+.galerie-item__title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+#lightbox { display:none; position:fixed; inset:0; background:rgba(8,12,24,.96); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:88vw; max-height:80vh; border-radius:6px; object-fit:contain; box-shadow:0 40px 100px rgba(0,0,0,.6); transition:opacity .3s ease,transform .3s ease; }
+#lightbox img.fade { opacity:0; transform:scale(.97); }
+#lightbox-close { position:absolute; top:24px; right:28px; color:rgba(255,255,255,.6); font-size:24px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); cursor:pointer; width:40px; height:40px; border-radius:4px; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+#lightbox-close:hover { color:white; border-color:rgba(255,255,255,.4); }
+#lightbox-caption { color:rgba(255,255,255,.5); font-family:var(--font-mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-top:16px; }
+#lightbox-counter { color:rgba(255,255,255,.25); font-family:var(--font-mono); font-size:10px; margin-top:6px; }
+#lightbox-nav { position:absolute; width:100%; display:flex; justify-content:space-between; padding:0 24px; pointer-events:none; }
+.lb-arrow { pointer-events:all; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; font-size:18px; width:48px; height:48px; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.lb-arrow:hover { background:rgba(255,255,255,.2); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a class="nav-logo" href="index.html"><img src="images/logo_lahaut.png" alt="LA HAUT" style="height:44px; width:auto; filter:invert(1);"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="entretien.html">Travaux sur cordes</a>
+      <a class="nav-link" href="zinguerie.html">Couverture &amp; Zinc</a>
+      <a class="nav-link" href="maconnerie.html">Maçonnerie</a>
+      <a class="nav-link" href="contrats.html">Syndics &amp; Pros</a>
+      <a class="nav-link active" href="realisations.html">Réalisations</a>
+      <a class="nav-link nav-link--cta" href="contact.html">Demander un devis</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a class="nav-link" href="entretien.html">Travaux sur cordes</a>
+  <a class="nav-link" href="zinguerie.html">Couverture &amp; Zinc</a>
+  <a class="nav-link" href="maconnerie.html">Maçonnerie</a>
+  <a class="nav-link" href="contrats.html">Syndics &amp; Pros</a>
+  <a class="nav-link" href="realisations.html">Réalisations</a>
+  <a class="nav-link nav-link--cta" href="contact.html">Demander un devis</a>
+</div>
+
+<section class="page-hero page-hero--beige">
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="label">Réalisations</div>
+      <h1>Mes chantiers.<br>Les vrais.</h1>
+      <p>Uniquement des photos personnelles. Des vrais chantiers, des vrais résultats.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <div class="galerie-tabs">
+      <button class="galerie-tab active" data-cat="all">Tous</button>
+      <button class="galerie-tab" data-cat="anti-pigeon">Anti-pigeon</button>
+      <button class="galerie-tab" data-cat="demoussage">Démoussage</button>
+      <button class="galerie-tab" data-cat="mise-en-securite">Mise en sécurité</button>
+      <button class="galerie-tab" data-cat="nettoyage">Nettoyage</button>
+      <button class="galerie-tab" data-cat="ravalement">Ravalement</button>
+      <button class="galerie-tab" data-cat="reparations">Réparations</button>
+      <button class="galerie-tab" data-cat="charpente">Charpente</button>
+      <button class="galerie-tab" data-cat="zinguerie">Zinguerie</button>
+    </div>
+    <div class="galerie-grid" id="galerie-grid">
+
+      <!-- ANTI-PIGEON -->
+      <div class="galerie-item" data-cat="anti-pigeon" data-src="images/anti-pigeon/1.jpg" data-caption="Anti-pigeon — Pose de filets anti-pigeon">
+        <div class="galerie-item__img-wrap">
+          <img src="images/anti-pigeon/1.jpg" alt="Pose de filets anti-pigeon" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Anti-pigeon</div>
+          <div class="galerie-item__title">Pose de filets anti-pigeon</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="anti-pigeon" data-src="images/anti-pigeon/2.jpg" data-caption="Anti-pigeon — Pose de pics anti-pigeon">
+        <div class="galerie-item__img-wrap">
+          <img src="images/anti-pigeon/2.jpg" alt="Pose de pics anti-pigeon" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Anti-pigeon</div>
+          <div class="galerie-item__title">Pose de pics anti-pigeon</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="anti-pigeon" data-src="images/anti-pigeon/3.jpg" data-caption="Anti-pigeon — Nettoyage façade et pose grille anti-volatile">
+        <div class="galerie-item__img-wrap">
+          <img src="images/anti-pigeon/3.jpg" alt="Nettoyage façade et pose grille anti-volatile" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Anti-pigeon</div>
+          <div class="galerie-item__title">Nettoyage façade et pose grille anti-volatile</div>
+        </div>
+      </div>
+
+      <!-- DÉMOUSSAGE -->
+      <div class="galerie-item" data-cat="demoussage" data-src="images/demoussage/1.jpg" data-caption="Démoussage — Brossage mécanique de toiture">
+        <div class="galerie-item__img-wrap">
+          <img src="images/demoussage/1.jpg" alt="Brossage mécanique de toiture" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Démoussage</div>
+          <div class="galerie-item__title">Brossage mécanique de toiture</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="demoussage" data-src="images/demoussage/2.jpg" data-caption="Démoussage — Pose de produits antimousse écologique">
+        <div class="galerie-item__img-wrap">
+          <img src="images/demoussage/2.jpg" alt="Pose de produits antimousse écologique" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Démoussage</div>
+          <div class="galerie-item__title">Pose de produits antimousse écologique</div>
+        </div>
+      </div>
+
+      <!-- MISE EN SÉCURITÉ -->
+      <div class="galerie-item" data-cat="mise-en-securite" data-src="images/mise-en-securite/1.jpg" data-caption="Mise en sécurité — Mise en sécurité d'éléments instables">
+        <div class="galerie-item__img-wrap">
+          <img src="images/mise-en-securite/1.jpg" alt="Mise en sécurité d'éléments instables" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Mise en sécurité</div>
+          <div class="galerie-item__title">Mise en sécurité d'éléments instables</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="mise-en-securite" data-src="images/mise-en-securite/2.jpg" data-caption="Mise en sécurité — Sécurisation de balcon">
+        <div class="galerie-item__img-wrap">
+          <img src="images/mise-en-securite/2.jpg" alt="Sécurisation de balcon" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Mise en sécurité</div>
+          <div class="galerie-item__title">Sécurisation de balcon</div>
+        </div>
+      </div>
+
+      <!-- NETTOYAGE -->
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/1.jpg" data-caption="Nettoyage — Nettoyage façade au jet haute pression">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/1.jpg" alt="Nettoyage façade au jet haute pression" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage façade au jet haute pression</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/2.jpg" data-caption="Nettoyage — Démoussage toiture avant traitement">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/2.jpg" alt="Démoussage toiture avant traitement" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Démoussage toiture avant traitement</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/3.jpg" data-caption="Nettoyage — Démoussage toiture après traitement">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/3.jpg" alt="Démoussage toiture après traitement" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Démoussage toiture après traitement</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/4.jpg" data-caption="Nettoyage — Nettoyage gouttières accumulation de débris">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/4.jpg" alt="Nettoyage gouttières accumulation de débris" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage gouttières accumulation de débris</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/5.jpg" data-caption="Nettoyage — Nettoyage gouttières résultat">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/5.jpg" alt="Nettoyage gouttières résultat" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage gouttières résultat</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/6.jpg" data-caption="Nettoyage — Nettoyage chéneau zinc">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/6.jpg" alt="Nettoyage chéneau zinc" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage chéneau zinc</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/7.jpg" data-caption="Nettoyage — Nettoyage noue évacuation dégagée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/7.jpg" alt="Nettoyage noue évacuation dégagée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage noue évacuation dégagée</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/8.jpg" data-caption="Nettoyage — Nettoyage façade joints et soubassement">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/8.jpg" alt="Nettoyage façade joints et soubassement" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage façade joints et soubassement</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/9.jpg" data-caption="Nettoyage — Traitement hydrofuge après nettoyage">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/9.jpg" alt="Traitement hydrofuge après nettoyage" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Traitement hydrofuge après nettoyage</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/10.jpg" data-caption="Nettoyage — Nettoyage autour de lucarne">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/10.jpg" alt="Nettoyage autour de lucarne" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Nettoyage autour de lucarne</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="nettoyage" data-src="images/nettoyage/11.jpg" data-caption="Nettoyage — Vue générale toiture nettoyée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/nettoyage/11.jpg" alt="Vue générale toiture nettoyée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Nettoyage</div>
+          <div class="galerie-item__title">Vue générale toiture nettoyée</div>
+        </div>
+      </div>
+
+      <!-- RAVALEMENT -->
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/1.jpg" data-caption="Ravalement — Ravalement façade piquage enduit dégradé">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/1.jpg" alt="Ravalement façade piquage enduit dégradé" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Ravalement façade piquage enduit dégradé</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/2.jpg" data-caption="Ravalement — Reprise enduit à la chaux">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/2.jpg" alt="Reprise enduit à la chaux" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Reprise enduit à la chaux</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/3.jpg" data-caption="Ravalement — Réfection joints pierre de taille">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/3.jpg" alt="Réfection joints pierre de taille" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Réfection joints pierre de taille</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/4.jpg" data-caption="Ravalement — Ragréage façade finition lissée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/4.jpg" alt="Ragréage façade finition lissée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Ragréage façade finition lissée</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/5.jpg" data-caption="Ravalement — Traitement fissure en façade">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/5.jpg" alt="Traitement fissure en façade" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Traitement fissure en façade</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/6.jpg" data-caption="Ravalement — Ravalement en hauteur accès cordes">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/6.jpg" alt="Ravalement en hauteur accès cordes" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Ravalement en hauteur accès cordes</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/7.jpg" data-caption="Ravalement — Façade ravalée vue d'ensemble">
+        <div class="galerie-item__img-wrap">
+          <img src="images/ravalement/7.jpg" alt="Façade ravalée vue d'ensemble" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Ravalement</div>
+          <div class="galerie-item__title">Façade ravalée vue d'ensemble</div>
+        </div>
+      </div>
+
+      <!-- RÉPARATIONS -->
+      <div class="galerie-item" data-cat="reparations" data-src="images/reparation-mesures-conservatoires/1.jpg" data-caption="Réparations — Réparation d'urgence en toiture">
+        <div class="galerie-item__img-wrap">
+          <img src="images/reparation-mesures-conservatoires/1.jpg" alt="Réparation d'urgence en toiture" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Réparations</div>
+          <div class="galerie-item__title">Réparation d'urgence en toiture</div>
+        </div>
+      </div>
+
+      <!-- CHARPENTE -->
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/1.jpg" data-caption="Charpente — Charpente traditionnelle diagnostic en hauteur">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/1.jpg" alt="Charpente traditionnelle diagnostic en hauteur" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Charpente traditionnelle diagnostic en hauteur</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/2.jpg" data-caption="Charpente — Remplacement chevron pourri">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/2.jpg" alt="Remplacement chevron pourri" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Remplacement chevron pourri</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/3.jpg" data-caption="Charpente — Traitement fongicide et insecticide charpente">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/3.jpg" alt="Traitement fongicide et insecticide charpente" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Traitement fongicide et insecticide charpente</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/4.jpg" data-caption="Charpente — Renfort de ferme about de chevron">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/4.jpg" alt="Renfort de ferme about de chevron" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Renfort de ferme about de chevron</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/5.jpg" data-caption="Charpente — Pureau de liteaux repose après intervention">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/5.jpg" alt="Pureau de liteaux repose après intervention" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Pureau de liteaux repose après intervention</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/6.jpg" data-caption="Charpente — Charpente vue après consolidation">
+        <div class="galerie-item__img-wrap">
+          <img src="images/travaux-charpente/6.jpg" alt="Charpente vue après consolidation" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Charpente vue après consolidation</div>
+        </div>
+      </div>
+
+      <!-- ZINGUERIE -->
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/1.jpg" data-caption="Zinguerie — Pose gouttière zinc demi-ronde">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/1.jpg" alt="Pose gouttière zinc demi-ronde" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Pose gouttière zinc demi-ronde</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/2.jpg" data-caption="Zinguerie — Soudure brasée jonction zinc">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/2.jpg" alt="Soudure brasée jonction zinc" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Soudure brasée jonction zinc</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/3.jpg" data-caption="Zinguerie — Naissance de gouttière scellement">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/3.jpg" alt="Naissance de gouttière scellement" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Naissance de gouttière scellement</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/4.jpg" data-caption="Zinguerie — Descente EP zinc fixation façade">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/4.jpg" alt="Descente EP zinc fixation façade" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Descente EP zinc fixation façade</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/5.jpg" data-caption="Zinguerie — Réfection solins zinc en pied de cheminée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/5.jpg" alt="Réfection solins zinc en pied de cheminée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Réfection solins zinc en pied de cheminée</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/6.jpg" data-caption="Zinguerie — Bavette zinc solin mur pignon">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/6.jpg" alt="Bavette zinc solin mur pignon" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Bavette zinc solin mur pignon</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/7.jpg" data-caption="Zinguerie — Noue zinc repose après nettoyage">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/7.jpg" alt="Noue zinc repose après nettoyage" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Noue zinc repose après nettoyage</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/8.jpg" data-caption="Zinguerie — Couvre-joint zinc faîtage">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/8.jpg" alt="Couvre-joint zinc faîtage" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Couvre-joint zinc faîtage</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/9.jpg" data-caption="Zinguerie — Chéneau zinc encaissé reprise de joint">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/9.jpg" alt="Chéneau zinc encaissé reprise de joint" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Chéneau zinc encaissé reprise de joint</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/10.jpg" data-caption="Zinguerie — Zinc patiné toiture terrasse">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/10.jpg" alt="Zinc patiné toiture terrasse" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Zinc patiné toiture terrasse</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/11.jpg" data-caption="Zinguerie — Relevé d'étanchéité zinc en pied de lucarne">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/11.jpg" alt="Relevé d'étanchéité zinc en pied de lucarne" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Relevé d'étanchéité zinc en pied de lucarne</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/12.jpg" data-caption="Zinguerie — Lucarne reprise zinc pourtour">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/12.jpg" alt="Lucarne reprise zinc pourtour" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Lucarne reprise zinc pourtour</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/13.jpg" data-caption="Zinguerie — Contre-solin maçonné avec relevé zinc">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/13.jpg" alt="Contre-solin maçonné avec relevé zinc" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Contre-solin maçonné avec relevé zinc</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/14.jpg" data-caption="Zinguerie — Gouttière zinc remplacement section corrodée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/14.jpg" alt="Gouttière zinc remplacement section corrodée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Gouttière zinc remplacement section corrodée</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/15.jpg" data-caption="Zinguerie — Rives zinc reprise en rive de toiture">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/15.jpg" alt="Rives zinc reprise en rive de toiture" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Rives zinc reprise en rive de toiture</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/16.jpg" data-caption="Zinguerie — Recouvrement zinc joint debout">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/16.jpg" alt="Recouvrement zinc joint debout" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Recouvrement zinc joint debout</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/17.jpg" data-caption="Zinguerie — Noue soudure zinc étanche">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/17.jpg" alt="Noue soudure zinc étanche" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Noue soudure zinc étanche</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/18.jpg" data-caption="Zinguerie — Chéneau à l'anglaise nettoyage et reprise">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/18.jpg" alt="Chéneau à l'anglaise nettoyage et reprise" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Chéneau à l'anglaise nettoyage et reprise</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/19.jpg" data-caption="Zinguerie — Crochet de gouttière remplacement">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/19.jpg" alt="Crochet de gouttière remplacement" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Crochet de gouttière remplacement</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/20.jpg" data-caption="Zinguerie — Trop-plein de sécurité pose">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/20.jpg" alt="Trop-plein de sécurité pose" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Trop-plein de sécurité pose</div>
+        </div>
+      </div>
+      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/21.jpg" data-caption="Zinguerie — Vue d'ensemble zinguerie terminée">
+        <div class="galerie-item__img-wrap">
+          <img src="images/zinguerie/21.jpg" alt="Vue d'ensemble zinguerie terminée" loading="lazy">
+          <div class="galerie-item__overlay"></div>
+        </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Zinguerie</div>
+          <div class="galerie-item__title">Vue d'ensemble zinguerie terminée</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <div id="lightbox-nav">
+    <button class="lb-arrow" id="lb-prev">&#8592;</button>
+    <button class="lb-arrow" id="lb-next">&#8594;</button>
+  </div>
+  <img src="" alt="">
+  <div id="lightbox-caption"></div>
+  <div id="lightbox-counter"></div>
+</div>
+
+<section class="cta-band">
+  <div class="container" style="position:relative;z-index:2;text-align:center;">
+    <div class="label label--white">Devis gratuit · Réponse 24h</div>
+    <h2>Votre chantier pourrait être ici.</h2>
+    <p>Contactez-moi pour une estimation — déplacement et devis gratuits en Île-de-France.</p>
+    <div class="cta-buttons">
+      <a class="btn btn--orange btn--lg" href="contact.html">Demander un devis</a>
+      <a class="btn btn--outline-white btn--lg" href="tel:+33659227569">⚡ Urgence 24h</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo_lahaut.png" alt="LA HAUT" style="height:38px; width:auto; filter:invert(1); margin-bottom:12px; display:block;">
+        <p>Couvreur-cordiste indépendant en Île-de-France.</p>
+        <p style="margin-top:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">lahaut.corde@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Prestations</h4>
+        <ul>
+          <li><a href="entretien.html">Travaux sur cordes</a></li>
+          <li><a href="zinguerie.html">Couverture &amp; Zinc</a></li>
+          <li><a href="maconnerie.html">Maçonnerie</a></li>
+          <li><a href="contrats.html">Syndics &amp; Pros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Réalisations</h4>
+        <ul><li><a href="realisations.html">Tous les chantiers</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+33659227569">06 59 22 75 69</a></li>
+          <li><a href="contact.html">Demander un devis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LA HAUT — Benoit Brient</span>
+      <span class="footer-siret">SIRET 813 062 031 00022 · RC Pro · Décennale Hoken n° FR15-RCD26P0004</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const tabs = document.querySelectorAll('.galerie-tab');
+const items = document.querySelectorAll('.galerie-item');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat = tab.dataset.cat;
+    items.forEach(item => {
+      item.classList.toggle('hidden', cat !== 'all' && item.dataset.cat !== cat);
+    });
+  });
+});
+const lb = document.getElementById('lightbox');
+const lbImg = lb.querySelector('img');
+const lbCaption = document.getElementById('lightbox-caption');
+const lbCounter = document.getElementById('lightbox-counter');
+let currentItems = [], currentIndex = 0;
+function getVisible() { return [...document.querySelectorAll('.galerie-item:not(.hidden)')]; }
+function updateLb() {
+  lbImg.src = currentItems[currentIndex].dataset.src;
+  lbCaption.textContent = currentItems[currentIndex].dataset.caption || '';
+  lbCounter.textContent = (currentIndex + 1) + ' / ' + currentItems.length;
+}
+function openLb(idx) {
+  currentItems = getVisible(); currentIndex = idx;
+  updateLb();
+  lb.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+function nav(d) {
+  lbImg.classList.add('fade');
+  setTimeout(() => {
+    currentIndex = (currentIndex + d + currentItems.length) % currentItems.length;
+    updateLb();
+    lbImg.classList.remove('fade');
+  }, 300);
+}
+items.forEach(item => { item.addEventListener('click', () => { openLb(getVisible().indexOf(item)); }); });
+document.getElementById('lightbox-close').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); nav(-1); });
+document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); nav(1); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') nav(-1);
+  if (e.key === 'ArrowRight') nav(1);
+});
+</script>
+</body>
+</html>
