@@ -838,6 +838,14 @@ em { font-style: normal; color: var(--orange); }
 }
 .galerie-item { transition: opacity 0.3s, transform 0.3s; }
 .galerie-item.hidden { display: none; }
+.galerie-item__img-wrap { height: 220px; overflow: hidden; width: 100%; border-radius: 8px 8px 0 0; }
+.galerie-item__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.galerie-item:hover .galerie-item__img-wrap img { transform: scale(1.64); }
+.galerie-item__body { padding: 14px 16px; background: white; border-radius: 0 0 8px 8px; border: 1px solid #e8e4df; border-top: none; }
+.galerie-item__cat { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--blue-mid, #2A5FA0); text-transform: uppercase; margin-bottom: 4px; }
+.galerie-item__title { font-size: 14px; font-weight: 600; color: var(--ink, #1a1a1a); line-height: 1.4; }
+.galerie-item { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+
 
 /* ── INSIGHT ── */
 .insight {
@@ -1333,4 +1341,14 @@ em { font-style: normal; color: var(--orange); }
 }
 .lightbox-trigger img {
   pointer-events: none;
+}
+
+@keyframes lahautLogo {
+  0%   { filter: brightness(0) invert(1); }
+  40%  { filter: brightness(0) invert(0.85) sepia(1) saturate(2.5) hue-rotate(338deg); }
+  70%  { filter: brightness(0) invert(0.95) sepia(0.4) brightness(1.08); }
+  100% { filter: brightness(0) invert(1); }
+}
+.nav-logo img {
+  animation: lahautLogo 40s ease-in-out infinite;
 }
