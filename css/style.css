@@ -838,6 +838,34 @@ em { font-style: normal; color: var(--orange); }
 }
 .galerie-item { transition: opacity 0.3s, transform 0.3s; }
 .galerie-item.hidden { display: none; }
+/* ── GALERIE ITEMS ── */
+.galerie-item { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+.galerie-item__img-wrap { height: 220px; overflow: hidden; width: 100%; }
+.galerie-item__img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.galerie-item:hover .galerie-item__img-wrap img { transform: scale(1.06); }
+.galerie-item__body { padding: 14px 16px; }
+.galerie-item__cat { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--blue-mid); text-transform: uppercase; margin-bottom: 4px; }
+.galerie-item__title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+/* ── AVANT/APRES FONDU ── */
+.ba-fade { position: relative; height: 100%; overflow: hidden; }
+.ba-img-after { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ba-img-before { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 2s ease; }
+.ba-fade:hover .ba-img-before { opacity: 0; }
+.ba-label { position: absolute; top: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 3px; z-index: 5; color: white; pointer-events: none; transition: opacity 0.5s; }
+.ba-label--avant { left: 8px; background: rgba(27,63,110,0.85); }
+.ba-label--apres { right: 8px; background: rgba(46,125,82,0.85); opacity: 0; }
+.ba-fade:hover .ba-label--avant { opacity: 0; }
+.ba-fade:hover .ba-label--apres { opacity: 1; }
+
+/* ── CARROUSEL AUTO ── */
+.ac { position: relative; height: 100%; overflow: hidden; }
+.ac-track { display: flex; height: 100%; transition: transform 0.9s cubic-bezier(.4,0,.2,1); }
+.ac-slide { min-width: 100%; height: 220px; object-fit: cover; flex-shrink: 0; display: block; }
+.ac-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 4; }
+.ac-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s; }
+.ac-dot.on { background: #D96A2A; }
+
 
 /* ── INSIGHT ── */
 .insight {
