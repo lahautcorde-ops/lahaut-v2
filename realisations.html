@@ -136,6 +136,14 @@
 .ba-fade:hover .ba-label--avant { opacity: 0; }
 .ba-fade:hover .ba-label--apres { opacity: 1; }
 </style>
+<style>
+.ac { position:relative; height:220px; overflow:hidden; }
+.ac-track { display:flex; height:220px; transition:transform 0.8s cubic-bezier(.4,0,.2,1); }
+.ac-slide { min-width:100%; height:220px; object-fit:cover; flex-shrink:0; display:block; }
+.ac-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:4; }
+.ac-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.4); transition:background 0.3s; }
+.ac-dot.on { background:#D96A2A; }
+</style>
 </head>
 <body>
 
@@ -378,15 +386,25 @@
       </div>
 
       <!-- CHARPENTE -->
-            <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/1.jpg" data-caption="Charpente — Travaux de charpente" style="grid-column: span 1;">
-        <div class="galerie-item__img-wrap" style="position:relative;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:220px;">
-            <img src="images/travaux-charpente/1.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/travaux-charpente/2.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/travaux-charpente/3.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/travaux-charpente/4.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/travaux-charpente/5.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/travaux-charpente/6.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/1.jpg" data-caption="Charpente — Travaux de charpente">
+        <div class="galerie-item__img-wrap" style="height:220px;overflow:hidden;">
+          <div class="ac" id="ac-ch">
+            <div class="ac-track">
+              <img class="ac-slide" src="images/travaux-charpente/1.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/2.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/3.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/4.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/5.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/6.jpg" loading="lazy">
+            </div>
+            <div class="ac-dots">
+              <div class="ac-dot on"></div>
+              <div class="ac-dot"></div>
+              <div class="ac-dot"></div>
+              <div class="ac-dot"></div>
+              <div class="ac-dot"></div>
+              <div class="ac-dot"></div>
+            </div>
           </div>
         </div>
         <div class="galerie-item__body">
@@ -613,6 +631,20 @@ document.querySelectorAll('.ba-slider').forEach(function(slider) {
     handle.style.left = pct;
   }, {passive: true});
 });
+</script>
+<script>
+(function(){
+  var el = document.getElementById('ac-ch');
+  if (!el) return;
+  var track = el.querySelector('.ac-track');
+  var dots = el.querySelectorAll('.ac-dot');
+  var n = 6, cur = 0;
+  setInterval(function(){
+    cur = (cur + 1) % n;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+  }, 2500);
+})();
 </script>
 </body>
 </html>
