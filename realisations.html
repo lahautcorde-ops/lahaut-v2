@@ -94,6 +94,48 @@
 .lb-arrow { pointer-events:all; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; font-size:18px; width:48px; height:48px; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
 .lb-arrow:hover { background:rgba(255,255,255,.2); }
 </style>
+<style>
+.ba-fade {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+.ba-fade img.ba-img-after {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.ba-fade img.ba-img-before {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+.ba-fade:hover img.ba-img-before {
+  opacity: 0;
+}
+.ba-label {
+  position: absolute;
+  top: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 5;
+  color: white;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.ba-label--avant { left: 8px; background: rgba(27,63,110,0.85); }
+.ba-label--apres { right: 8px; background: rgba(46,125,82,0.85); opacity: 0; }
+.ba-fade:hover .ba-label--avant { opacity: 0; }
+.ba-fade:hover .ba-label--apres { opacity: 1; }
+</style>
 </head>
 <body>
 
@@ -262,20 +304,15 @@
       
 
       <!-- RAVALEMENT -->
-      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/1.jpg" data-caption="Ravalement — Ravalement façade piquage enduit dégradé">
+      
+            <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/1.jpg" data-caption="Ravalement — Reprise enduit à la chaux">
         <div class="galerie-item__img-wrap">
-          <img src="images/ravalement/1.jpg" alt="Ravalement façade piquage enduit dégradé" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Ravalement</div>
-          <div class="galerie-item__title">Ravalement façade piquage enduit dégradé</div>
-        </div>
-      </div>
-      <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/2.jpg" data-caption="Ravalement — Reprise enduit à la chaux">
-        <div class="galerie-item__img-wrap">
-          <img src="images/ravalement/2.jpg" alt="Reprise enduit à la chaux" loading="lazy">
-          <div class="galerie-item__overlay"></div>
+          <div class="ba-fade">
+            <img class="ba-img-after" src="images/ravalement/1.jpg" alt="Après" loading="lazy">
+            <img class="ba-img-before" src="images/ravalement/2.jpg" alt="Avant" loading="lazy">
+            <span class="ba-label ba-label--avant">AVANT</span>
+            <span class="ba-label ba-label--apres">APRÈS</span>
+          </div>
         </div>
         <div class="galerie-item__body">
           <div class="galerie-item__cat">Ravalement</div>
@@ -412,59 +449,23 @@
       
       
       
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/9.jpg" data-caption="Zinguerie — Chéneau zinc encaissé reprise de joint">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/9.jpg" alt="Chéneau zinc encaissé reprise de joint" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Chéneau zinc encaissé reprise de joint</div>
-        </div>
-      </div>
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/10.jpg" data-caption="Zinguerie — Zinc patiné toiture terrasse">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/10.jpg" alt="Zinc patiné toiture terrasse" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Zinc patiné toiture terrasse</div>
-        </div>
-      </div>
       
       
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/13.jpg" data-caption="Zinguerie — Contre-solin maçonné avec relevé zinc">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/13.jpg" alt="Contre-solin maçonné avec relevé zinc" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Contre-solin maçonné avec relevé zinc</div>
-        </div>
-      </div>
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/14.jpg" data-caption="Zinguerie — Gouttière zinc remplacement section corrodée">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/14.jpg" alt="Gouttière zinc remplacement section corrodée" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Gouttière zinc remplacement section corrodée</div>
-        </div>
-      </div>
-            <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/17.jpg" data-caption="Zinguerie — Réfection de porte de lucarne">
+      
+      
+      
+      
+            <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/17.jpg" data-caption="Zinguerie — Réfection de poteaux de lucarne en zinc">
         <div class="galerie-item__img-wrap" style="position:relative;overflow:hidden;">
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:220px;">
-            <img src="images/zinguerie/17.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/zinguerie/18.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/zinguerie/19.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
           </div>
         </div>
         <div class="galerie-item__body">
           <div class="galerie-item__cat" style="color:var(--blue-mid);">Zinguerie</div>
-          <div class="galerie-item__title">Réfection de porte de lucarne</div>
+          <div class="galerie-item__title">Réfection de poteaux de lucarne en zinc</div>
         </div>
       </div>
       
@@ -478,26 +479,8 @@
           <div class="galerie-item__title">Remplacement de costière et rehausse de Velux</div>
         </div>
       </div>
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/18.jpg" data-caption="Zinguerie — Chéneau à l'anglaise nettoyage et reprise">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/18.jpg" alt="Chéneau à l'anglaise nettoyage et reprise" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Chéneau à l'anglaise nettoyage et reprise</div>
-        </div>
-      </div>
-      <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/19.jpg" data-caption="Zinguerie — Crochet de gouttière remplacement">
-        <div class="galerie-item__img-wrap">
-          <img src="images/zinguerie/19.jpg" alt="Crochet de gouttière remplacement" loading="lazy">
-          <div class="galerie-item__overlay"></div>
-        </div>
-        <div class="galerie-item__body">
-          <div class="galerie-item__cat">Zinguerie</div>
-          <div class="galerie-item__title">Crochet de gouttière remplacement</div>
-        </div>
-      </div>
+      
+      
       
       
 
