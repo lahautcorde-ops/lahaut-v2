@@ -94,82 +94,26 @@
 .lb-arrow { pointer-events:all; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:white; font-size:18px; width:48px; height:48px; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
 .lb-arrow:hover { background:rgba(255,255,255,.2); }
 </style>
+
+
 <style>
-.ba-fade {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-}
-.ba-fade img.ba-img-after {
-  display: block;
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-.ba-fade img.ba-img-before {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  opacity: 1;
-  transition: opacity 2s ease;
-}
-.ba-fade:hover img.ba-img-before {
-  opacity: 0;
-}
-.ba-label {
-  position: absolute;
-  top: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  border-radius: 3px;
-  z-index: 5;
-  color: white;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.ba-label--avant { left: 8px; background: rgba(27,63,110,0.85); }
-.ba-label--apres { right: 8px; background: rgba(46,125,82,0.85); opacity: 0; }
-.ba-fade:hover .ba-label--avant { opacity: 0; }
-.ba-fade:hover .ba-label--apres { opacity: 1; }
+.ba-fade { position:relative; height:220px; overflow:hidden; }
+.ba-img-after { display:block; width:100%; height:220px; object-fit:cover; }
+.ba-img-before { position:absolute; top:0; left:0; width:100%; height:220px; object-fit:cover; opacity:1; transition:opacity 2s ease; }
+.ba-fade:hover .ba-img-before { opacity:0; }
+.ba-label { position:absolute; top:8px; font-size:10px; font-weight:700; letter-spacing:1px; padding:3px 8px; border-radius:3px; z-index:5; color:white; pointer-events:none; transition:opacity 0.5s ease; }
+.ba-label--avant { left:8px; background:rgba(27,63,110,0.85); }
+.ba-label--apres { right:8px; background:rgba(46,125,82,0.85); opacity:0; }
+.ba-fade:hover .ba-label--avant { opacity:0; }
+.ba-fade:hover .ba-label--apres { opacity:1; }
 </style>
 <style>
-.auto-carousel {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-}
-.auto-carousel__track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
-}
-.auto-carousel__slide {
-  min-width: 100%;
-  height: 220px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.auto-carousel__dots {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 5;
-}
-.auto-carousel__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  transition: background 0.3s;
-}
-.auto-carousel__dot.on { background: #D96A2A; }
+.ac { position:relative; height:220px; overflow:hidden; border-radius:var(--radius-sm,6px) var(--radius-sm,6px) 0 0; }
+.ac-track { display:flex; height:100%; transition:transform 0.9s cubic-bezier(.4,0,.2,1); }
+.ac-slide { min-width:100%; height:220px; object-fit:cover; flex-shrink:0; display:block; }
+.ac-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:4; }
+.ac-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.4); transition:background 0.3s; cursor:pointer; }
+.ac-dot.on { background:#D96A2A; }
 </style>
 </head>
 <body>
@@ -354,21 +298,18 @@
           <div class="galerie-item__title">Reprise enduit à la chaux</div>
         </div>
       </div>
-            <div class="galerie-item galerie-item--beforeafter" data-cat="ravalement" data-src="images/ravalement/3.jpg" data-caption="Ravalement — Mise en peinture et solin">
-        <div class="galerie-item__img-wrap ba-slider" style="position:relative;overflow:hidden;cursor:col-resize;">
-          <img src="images/ravalement/3.jpg" alt="Après" loading="lazy" style="display:block;width:100%;height:220px;object-fit:cover;">
-          <div class="ba-before" style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
-            <img src="images/ravalement/4.jpg" alt="Avant" loading="lazy" style="display:block;width:220px;max-width:none;height:220px;object-fit:cover;">
+                  <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/3.jpg" data-caption="Ravalement — Mise en peinture et solin">
+        <div class="galerie-item__img-wrap">
+          <div class="ba-fade">
+            <img class="ba-img-after" src="images/ravalement/3.jpg" alt="Après" loading="lazy">
+            <img class="ba-img-before" src="images/ravalement/4.jpg" alt="Avant" loading="lazy">
+            <span class="ba-label ba-label--avant">AVANT</span>
+            <span class="ba-label ba-label--apres">APRÈS</span>
           </div>
-          <div class="ba-handle" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:3px;height:100%;background:#D96A2A;cursor:col-resize;z-index:10;">
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:#D96A2A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:bold;">⟺</div>
-          </div>
-          <div style="position:absolute;top:8px;left:8px;background:rgba(27,63,110,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">AVANT</div>
-          <div style="position:absolute;top:8px;right:8px;background:rgba(46,125,82,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">APRÈS</div>
         </div>
         <div class="galerie-item__body">
           <div class="galerie-item__cat">Peinture</div>
-          <div class="galerie-item__title" style="color:#1a1a1a;">Mise en peinture et solin</div>
+          <div class="galerie-item__title">Mise en peinture et solin</div>
         </div>
       </div>
       <div class="galerie-item" data-cat="ravalement" data-src="images/ravalement/4.jpg" data-caption="Ravalement — Ragréage façade finition lissée">
@@ -416,10 +357,25 @@
       </div>
 
       <!-- CHARPENTE -->
-            <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/1.jpg" data-caption="Charpente — Travaux de charpente" style="grid-column: span 1;">
-        <div class="galerie-item__img-wrap" style="position:relative;overflow:hidden;">
-          <div class="auto-car" id="ac1"><div class="ac-track"><img src="images/travaux-charpente/1.jpg" class="ac-slide"><img src="images/travaux-charpente/2.jpg" class="ac-slide"><img src="images/travaux-charpente/3.jpg" class="ac-slide"><img src="images/travaux-charpente/4.jpg" class="ac-slide"><img src="images/travaux-charpente/5.jpg" class="ac-slide"><img src="images/travaux-charpente/6.jpg" class="ac-slide"></div></div>
+                  <div class="galerie-item" data-cat="charpente" data-src="images/travaux-charpente/1.jpg" data-caption="Charpente — Travaux de charpente">
+        <div class="galerie-item__img-wrap" style="overflow:hidden;">
+          <div class="ac" id="ac-ch">
+            <div class="ac-track">
+              <img class="ac-slide" src="images/travaux-charpente/1.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/2.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/3.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/4.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/5.jpg" loading="lazy">
+              <img class="ac-slide" src="images/travaux-charpente/6.jpg" loading="lazy">
+            </div>
+            <div class="ac-dots" id="ac-ch-d"></div>
+          </div>
         </div>
+        <div class="galerie-item__body">
+          <div class="galerie-item__cat">Charpente</div>
+          <div class="galerie-item__title">Travaux de charpente</div>
+        </div>
+      </div>
         <div class="galerie-item__body">
           <div class="galerie-item__cat">Charpente</div>
           <div class="galerie-item__title">Travaux de charpente</div>
@@ -439,38 +395,32 @@
         </div>
       </div>
       
-            <div class="galerie-item galerie-item--beforeafter" data-cat="zinguerie" data-src="images/zinguerie/10.jpg" data-caption="Zinguerie — Réfection de couronnement de cheminée en zinc">
-        <div class="galerie-item__img-wrap ba-slider" style="position:relative;overflow:hidden;cursor:col-resize;">
-          <img src="images/zinguerie/10.jpg" alt="Après" loading="lazy" style="display:block;width:100%;height:220px;object-fit:cover;">
-          <div class="ba-before" style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
-            <img src="images/zinguerie/9.jpg" alt="Avant" loading="lazy" style="display:block;width:220px;max-width:none;height:220px;object-fit:cover;">
+                  <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/10.jpg" data-caption="Zinguerie — Réfection de couronnement de cheminée en zinc">
+        <div class="galerie-item__img-wrap">
+          <div class="ba-fade">
+            <img class="ba-img-after" src="images/zinguerie/10.jpg" alt="Après" loading="lazy">
+            <img class="ba-img-before" src="images/zinguerie/9.jpg" alt="Avant" loading="lazy">
+            <span class="ba-label ba-label--avant">AVANT</span>
+            <span class="ba-label ba-label--apres">APRÈS</span>
           </div>
-          <div class="ba-handle" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:3px;height:100%;background:#D96A2A;cursor:col-resize;z-index:10;">
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:#D96A2A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:bold;">⟺</div>
-          </div>
-          <div style="position:absolute;top:8px;left:8px;background:rgba(27,63,110,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">AVANT</div>
-          <div style="position:absolute;top:8px;right:8px;background:rgba(46,125,82,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">APRÈS</div>
         </div>
         <div class="galerie-item__body">
-          <div class="galerie-item__cat" style="color:var(--blue-mid);">Zinguerie</div>
+          <div class="galerie-item__cat">Zinguerie</div>
           <div class="galerie-item__title">Réfection de couronnement de cheminée en zinc</div>
         </div>
       </div>
       
-            <div class="galerie-item galerie-item--beforeafter" data-cat="zinguerie" data-src="images/zinguerie/14.jpg" data-caption="Zinguerie — Remplacement de gouttière">
-        <div class="galerie-item__img-wrap ba-slider" style="position:relative;overflow:hidden;cursor:col-resize;">
-          <img src="images/zinguerie/14.jpg" alt="Après" loading="lazy" style="display:block;width:100%;height:220px;object-fit:cover;">
-          <div class="ba-before" style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
-            <img src="images/zinguerie/13.jpg" alt="Avant" loading="lazy" style="display:block;width:220px;max-width:none;height:220px;object-fit:cover;">
+                  <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/14.jpg" data-caption="Zinguerie — Remplacement de gouttière">
+        <div class="galerie-item__img-wrap">
+          <div class="ba-fade">
+            <img class="ba-img-after" src="images/zinguerie/14.jpg" alt="Après" loading="lazy">
+            <img class="ba-img-before" src="images/zinguerie/13.jpg" alt="Avant" loading="lazy">
+            <span class="ba-label ba-label--avant">AVANT</span>
+            <span class="ba-label ba-label--apres">APRÈS</span>
           </div>
-          <div class="ba-handle" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:3px;height:100%;background:#D96A2A;cursor:col-resize;z-index:10;">
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:#D96A2A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:bold;">⟺</div>
-          </div>
-          <div style="position:absolute;top:8px;left:8px;background:rgba(27,63,110,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">AVANT</div>
-          <div style="position:absolute;top:8px;right:8px;background:rgba(46,125,82,0.85);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;z-index:5;">APRÈS</div>
         </div>
         <div class="galerie-item__body">
-          <div class="galerie-item__cat" style="color:var(--blue-mid);">Zinguerie</div>
+          <div class="galerie-item__cat">Zinguerie</div>
           <div class="galerie-item__title">Remplacement de gouttière</div>
         </div>
       </div>
@@ -483,12 +433,15 @@
       
       
       
-            <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/17.jpg" data-caption="Zinguerie — Réfection de poteaux de lucarne en zinc">
-        <div class="galerie-item__img-wrap" style="position:relative;overflow:hidden;">
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:220px;">
-            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <img src="images/zinguerie/20.jpg" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                  <div class="galerie-item" data-cat="zinguerie" data-src="images/zinguerie/18.jpg" data-caption="Zinguerie — Réfection de poteaux de lucarne en zinc">
+        <div class="galerie-item__img-wrap" style="overflow:hidden;">
+          <div class="ac" id="ac-lu">
+            <div class="ac-track">
+              <img class="ac-slide" src="images/zinguerie/18.jpg" loading="lazy">
+              <img class="ac-slide" src="images/zinguerie/19.jpg" loading="lazy">
+              <img class="ac-slide" src="images/zinguerie/20.jpg" loading="lazy">
+            </div>
+            <div class="ac-dots" id="ac-lu-d"></div>
           </div>
         </div>
         <div class="galerie-item__body">
@@ -627,64 +580,26 @@ document.addEventListener('keydown', e => {
 });
 </script>
 
-<script>
-document.querySelectorAll('.ba-slider').forEach(function(slider) {
-  var before = slider.querySelector('.ba-before');
-  var handle = slider.querySelector('.ba-handle');
-  var dragging = false;
-  slider.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-  window.addEventListener('mouseup', function() { dragging = false; });
-  slider.addEventListener('mousemove', function(e) {
-    if (!dragging) return;
-    var rect = slider.getBoundingClientRect();
-    var x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    var pct = (x / rect.width * 100) + '%';
-    before.style.width = pct;
-    handle.style.left = pct;
-  });
-  slider.addEventListener('touchmove', function(e) {
-    var rect = slider.getBoundingClientRect();
-    var x = Math.max(0, Math.min(e.touches[0].clientX - rect.left, rect.width));
-    var pct = (x / rect.width * 100) + '%';
-    before.style.width = pct;
-    handle.style.left = pct;
-  }, {passive: true});
-});
-</script>
-<script>
-(function() {
-  var carousels = {
-    'ac-charpente': { total: 6, current: 0 },
-    'ac-lucarne': { total: 3, current: 0 }
-  };
 
-  function initCarousel(id) {
-    var state = carousels[id];
-    var dots = document.getElementById(id + '-dots');
-    if (!dots) return;
-    dots.innerHTML = '';
-    for (var i = 0; i < state.total; i++) {
-      var d = document.createElement('div');
-      d.className = 'auto-carousel__dot' + (i === 0 ? ' on' : '');
-      dots.appendChild(d);
+
+<script>
+(function(){
+  var cfg = [{id:'ac-ch',n:6},{id:'ac-lu',n:3}];
+  cfg.forEach(function(c){
+    var el=document.getElementById(c.id); if(!el) return;
+    var dd=document.getElementById(c.id+'-d');
+    var cur=0;
+    for(var i=0;i<c.n;i++){
+      var d=document.createElement('div');
+      d.className='ac-dot'+(i===0?' on':'');
+      dd.appendChild(d);
     }
-    setInterval((function(cid) {
-      return function() { advance(cid); };
-    })(id), 2500);
-  }
-
-  function advance(id) {
-    var state = carousels[id];
-    state.current = (state.current + 1) % state.total;
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.querySelector('.auto-carousel__track').style.transform = 'translateX(-' + (state.current * 100) + '%)';
-    var dots = el.querySelectorAll('.auto-carousel__dot');
-    dots.forEach(function(d, i) { d.classList.toggle('on', i === state.current); });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    Object.keys(carousels).forEach(initCarousel);
+    setInterval(function(){
+      cur=(cur+1)%c.n;
+      el.querySelector('.ac-track').style.transform='translateX(-'+(cur*100)+'%)';
+      var dots=dd.querySelectorAll('.ac-dot');
+      dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});
+    },2800);
   });
 })();
 </script>
